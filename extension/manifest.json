@@ -1,0 +1,13 @@
+{
+  "name": "snail",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "snail.",
+  "permissions": [
+    "tabs", "webRequest", "webRequestBlocking", "<all_urls>"
+  ],
+  "background": {
+        "scripts": ["lib/underscore-min.js", "config/config.js", "background/engine.js", "background/register.js"],
+        "persistent": true
+  }
+}

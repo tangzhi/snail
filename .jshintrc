@@ -1,0 +1,34 @@
+{
+    "browser": true,
+    "devel": true,
+
+    "camelcase": true,
+    "curly": true, 
+    "eqeqeq": true,
+    "es3": true,
+    "immed": true,
+    "indent": 4,
+    "newcap": false,
+    "noarg": true,
+    "noempty": true,
+    "nonew": true,
+    "quotmark": "double",
+    "strict": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true,
+
+    "asi": false,
+    "boss": false,
+    "debug": false,
+    
+
+    "globals": {
+        "_": true,
+        "chrome": true,
+
+        "engine": true,
+        "REQUEST_EVENTS": true,
+        "config": true
+    }
+}
