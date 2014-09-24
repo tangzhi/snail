@@ -1,13 +1,22 @@
 {
-  "name": "snail",
-  "version": "1.0",
-  "manifest_version": 2,
-  "description": "snail.",
-  "permissions": [
-    "tabs", "webRequest", "webRequestBlocking", "<all_urls>"
-  ],
-  "background": {
+    "name": "snail",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "snail.",
+    "permissions": [
+        "tabs", "webRequest", "webRequestBlocking", "<all_urls>"
+    ],
+    "browser_action": {
+        "default_icon": "snail.png",
+        "default_popup": "page/options.html"
+    },
+    "background": {
         "scripts": ["lib/underscore-min.js", "config/config.js", "background/engine.js", "background/register.js"],
         "persistent": true
-  }
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "web_accessible_resources": [
+        "lib/*.js",
+        "page/js/*.js"
+    ]
 }

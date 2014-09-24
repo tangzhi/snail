@@ -141,6 +141,12 @@ var engine = function() {
                         continue;
                     }
 
+
+                    ///default
+                    gRules[ev][action+"."+target] = {   handle:cmd.handle, 
+                                                            filter: cmd.filter,
+                                                            extraInfo: cmd.extraInfo };
+
                 }
 
             }
