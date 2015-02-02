@@ -11,9 +11,6 @@ define([
         template: _.template($('#autoauth-template').html()),
 
         render: function() {
-            console.log("autoauthView render.");
-            $(".fi-torso").parents("li").addClass("active")
-                          .siblings().removeClass("active");
             this.$el.html(this.template({}));
         }
 

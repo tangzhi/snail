@@ -1,0 +1,98 @@
+        <div class="row">
+            <div class="small-12 columns text-center"><h3>偷天换日，精彩缤纷</h3></div>
+        </div>
+
+        <table role="grid">
+            <thead>
+                <tr>
+                    <th class="small-1">序号</th>
+                    <th class="small-5">功能说明</th>
+                    <th class="small-3">原网址</th>
+                    <th class="small-3">操作</th>
+                </tr>
+            </thead>
+            <tbody id="replace-list">
+                <!--
+                <tr>
+                    <td>1</td>
+                    <td>ajax.googleapis.com</td>
+                    <td>cdnjs.cloudflare.com</td>
+                    <td><a href="#" class="tiny button">删除</a></td>
+                    <td><a href="#" class="tiny button alert round">123</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>fonts.googleapis.com</td>
+                    <td>fonts.useso.com</td>
+                    <td><a href="#" class="tiny button">删除</a></td>
+                    <td><a href="#" class="tiny button alert round">123</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>blogspot.com</td>
+                    <td>blogsp0t.com</td>
+                    <td><a href="#" class="tiny button">删除</a></td>
+                    <td><a href="#" class="tiny button alert round">123</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>www.google.com[^\/]*</td>
+                    <td>wen.lu</td>
+                    <td><a href="#" class="tiny button">删除</a></td>
+                    <td><a href="#" class="tiny button alert round">123</a></td>
+                </tr>
+                -->
+            </tbody>
+
+        </table>
+
+        <div class="row">
+            <div class="small-12 columns text-center"><h3>自定义替换规则</h3></div>
+        </div>
+
+        <form data-abide>
+            <div class="row">
+                <div class="small-12 medium-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-2 columns">
+                            <label class="prefix">原网址:</label>
+                        </div>
+                        <div class="small-10 columns url-field">
+                            <input type="text" id="old_url" required placeholder="host/path/to">
+                            <small class="error">请输入正确的网址规则</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="small-12 medium-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-2 columns">
+                            <label class="prefix">替换网址:</label>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="text" id="new_url" required placeholder="host/path/to">
+                            <small class="error">请输入正确的替换网址</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="small-12 medium-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-2 columns">
+                            <label class="prefix">说明:</label>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="text" required id="desc" placeholder="简单描述">
+                            <small class="error">请输入说明信息</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="small-4 small-offset-4 columns">
+                    <button type="submit" class="small expand replace-add">添加</button>
+                </div>
+            </div>
+        </form>

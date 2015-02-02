@@ -29,12 +29,47 @@ var DEFAULT_EXTRA_INFO_OPTS = {};
 
 })();
 
+
 /* exported engine */
 var engine = function() {
     "use strict";
 
     //records callback list
     var gRules;
+
+    //generate rules from localStorage
+    var generateRules = function() {
+
+        var cfg = {onBeforeRequest: {}};
+        
+        var cancelCfg = new Store("snail-cancel");
+
+        var cancelUrls = _(cancelCfg.records).chain().map(function(id){
+                        return cancelCfg.jsonData(cancelCfg.localStorage().getItem(cancelCfg.name+"-"+id)).url;
+                    }, this).compact().value();
+
+        if (cancelUrls.length>0) {
+            cfg.onBeforeRequest.cancel = {_snail_cancel: {urls: cancelUrls}};
+        }
+
+        var redirectCfg = new Store("snail-replace");
+
+        var rUrls = _(redirectCfg.records).chain().map(function(id){
+                        var one = redirectCfg.jsonData(redirectCfg.localStorage().getItem(redirectCfg.name+"-"+id));
+                        return {src: new RegExp(one.old_url), desc: one.new_url};
+                    }, this).compact().value();
+
+        if (rUrls.length>0) {
+            cfg.onBeforeRequest.redirectUrl = {_snail_replace: {}};
+
+            cfg.onBeforeRequest.redirectUrl._snail_replace.replace = rUrls;
+        }
+
+        console.log("generateRules:"+JSON.stringify(cfg));
+
+        convertRules(cfg);
+
+    };
 
     //convert config to options
     var parse = function(config) {
@@ -53,7 +88,7 @@ var engine = function() {
             }
         }
 
-        getRules(cfg);
+        convertRules(cfg);
     };
 
     //get filter option or extraInfo option by eventName
@@ -105,9 +140,9 @@ var engine = function() {
     };
 
     //
-    var getRules = function(options) {
+    var convertRules = function(options) {
 
-        gRules = {};
+        gRules = gRules || {};
         var handle;
         
         for(var ev in options) {
@@ -160,7 +195,7 @@ var engine = function() {
             return;
         }
 
-        console.log(JSON.stringify(gRules));
+        console.log("on:"+JSON.stringify(gRules));
 
         for(var ev in gRules) {
             var targets = gRules[ev];
@@ -179,6 +214,8 @@ var engine = function() {
 
     var off = function() {
 
+        console.log("off:"+JSON.stringify(gRules));
+
         if (!gRules) {
             return;
         }
@@ -189,6 +226,7 @@ var engine = function() {
             for(var target in targets) {
                 var cmd = targets[target];
                     
+                console.log("off:["+ev+"]-"+target);
                 chrome.webRequest[ev].removeListener( cmd.handle );        
             }
         }
@@ -196,6 +234,7 @@ var engine = function() {
     };
 
     return {
+        generateRules: generateRules,
         parse: parse,
         on : on,
         off: off

@@ -10,13 +10,11 @@
         "default_icon": "snail.png",
         "default_popup": "page/options.html"
     },
+    "options_page": "page/options.html",
     "background": {
-        "scripts": ["lib/underscore-min.js", "config/config.js", "background/engine.js", "background/register.js"],
+        "scripts": ["lib/underscore-min.js", "lib/backbone-min.js", "lib/backbone.localStorage.js", 
+                    "config/config.js", "background/engine.js", "background/register.js"],
         "persistent": true
     },
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-    "web_accessible_resources": [
-        "lib/*.js",
-        "page/js/*.js"
-    ]
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

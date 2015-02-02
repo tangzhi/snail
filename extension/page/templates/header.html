@@ -12,10 +12,7 @@
 
                 <!-- Top Bar Section -->
                 <section class="top-bar-section">
-                    <ul class="right">
-                        <% for(var i=0, j=items.length; i<j; ++i) { %> 
-                        <li><a href="#<%= items[i].href %>"><i class="<%= items[i].clazz %>"></i> <%= items[i].name %></a></li>
-                        <% } %>
+                    <ul class="right" id="tent-list">
                     </ul>
                 </section>
 

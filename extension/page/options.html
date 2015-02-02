@@ -28,124 +28,10 @@
         <!-- --------------    Templates    -------------- -->
         <!-- --------------------------------------------- -->
 
-        <script type="text/template" id="header-template">
-        <div class="sticky">
-            <nav class="top-bar" data-topbar="" role="navigation" data-options="is_hover: false">
-                <!-- Title -->
-                <ul class="title-area">
-
-                    <li class="name"><h1><a href="#">蜗牛宝宝</a></h1></li>
-
-                    <!-- Mobile Menu Toggle -->
-                    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-                </ul>
-
-
-                <!-- Top Bar Section -->
-                <section class="top-bar-section">
-                    <ul class="right">
-                        <% for(var i=0, j=items.length; i<j; ++i) { %> 
-                        <li><a href="#<%= items[i].href %>"><i class="<%= items[i].clazz %>"></i> <%= items[i].name %></a></li>
-                        <% } %>
-                    </ul>
-                </section>
-
-            </nav>
-        </div>
-        </script>
-
+        
 
         <!-- ------------    Cancel Template     --------- -->
 
-        <script type="text/template" id="cancel-template">
-        <div class="row">
-            <div class="small-12 columns text-center"><h3>屏蔽垃圾，清新爽目</h3></div>
-        </div>
-
-        <table role="grid">
-            <thead>
-                <tr>
-                    <th class="small-1">序号</th>
-                    <th class="small-7">URL</th>
-                    <th class="small-2">操作</th>
-                    <th class="small-2"><i class="fi-like size-24"></i> 推荐数</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td ><span data-tooltip aria-haspopup="true" class="has-tip" 
-                            title="游戏网站,www.ibm.com/developerworks/cn弹出窗口!">*://220.167.100.204/*</span></td>
-                    <td><a href="#" class="tiny button">删除</a></td>
-                    <td><a href="#" class="tiny button alert round">12345</a></td>
-                </tr>
-
-                <tr role="row">
-                    <td>2</td>
-                    <td><span data-tooltip aria-haspopup="true" class="has-tip" 
-                            title="起点网广告!">*://*.fastapi.net/*</span></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td><span data-tooltip aria-haspopup="true" class="has-tip" 
-                            title="百度广告!">*://pos.baidu.com/*</span></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td><span data-tooltip aria-haspopup="true" class="has-tip" 
-                            title="谷歌广告!">*://*.googlesyndication.com/pagead/*</span></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-
-        </table>
-
-        <div class="row">
-            <div class="small-12 columns text-center"><h3>自定义屏蔽规则</h3></div>
-        </div>
-
-        <div class="row">
-            <div class="small-12 medium-12 columns">
-                <div class="row collapse prefix-radius">
-                    <div class="small-2 columns">
-                        <select class="prefix">
-                            <option value="husker">http://</option>
-                            <option value="starbuck">https://</option>
-                            <option value="hotdog">ftp://</option>
-                            <option value="apollo">*://</option>
-                        </select>
-                    </div>
-                    <div class="small-10 columns">
-                        <input type="text" placeholder="host/path/to/*">
-                    </div>
-                </div>
-            </div>
-
-            <div class="small-12 medium-12 columns">
-                <div class="row collapse prefix-radius">
-                    <div class="small-2 columns">
-                        <label class="prefix">描述:</label>
-                    </div>
-                    <div class="small-10 columns">
-                        <input type="text" placeholder="禁止的原因...">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="small-4 small-offset-4 columns">
-                <a href="#" class="button small expand">添加</a>
-            </div>
-        </div>
-        </script>
 
         <!-- ------------    Replace Template     --------- -->
 
@@ -159,9 +45,9 @@
                 <tr>
                     <th class="small-1">序号</th>
                     <th class="small-4">原网址</th>
-                    <th class="small-4">替换网址</th>
+                    <th class="small-3">替换网址</th>
                     <th class="small-2">操作</th>
-                    <th class="small-1"><i class="fi-like size-24"></i> 推荐数</th>
+                    <th class="small-2"><i class="fi-like size-24"></i> 推荐数</th>
                 </tr>
             </thead>
             <tbody>

@@ -1,0 +1,60 @@
+        <div class="row">
+            <div class="small-12 columns text-center"><h3>屏蔽冗余，清新爽目</h3></div>
+        </div>
+
+        <table role="grid">
+            <thead>
+                <tr>
+                    <th class="small-1">序号</th>
+                    <th class="small-7">功能说明</th>
+                    <th class="small-4">操作</th>
+                </tr>
+            </thead>
+            <tbody id="cancel-list">
+            </tbody>
+
+        </table>
+
+        <div class="row">
+            <div class="small-12 columns text-center"><h3>自定义屏蔽规则</h3></div>
+        </div>
+
+        <form data-abide="ajax">
+            <div class="row">
+                <div class="small-12 medium-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-2 columns">
+                            <select class="prefix" id="scheme">
+                                <option value="http://">http://</option>
+                                <option value="https://">https://</option>
+                                <option value="ftp://">ftp://</option>
+                                <option value="*://">*://</option>
+                            </select>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="text" id="url" pattern="url_path" required placeholder="host/path/to/*">
+                            <small class="error">请输入需要屏蔽的URL路径</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="small-12 medium-12 columns">
+                    <div class="row collapse prefix-radius">
+                        <div class="small-2 columns">
+                            <label class="prefix">说明:</label>
+                        </div>
+                        <div class="small-10 columns">
+                            <input type="text" id="desc" required placeholder="禁止的原因...">
+                            <small class="error">请说明原因</small>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="row">
+                <div class="small-4 small-offset-4 columns">
+                    <button type="submit" class="button small expand cancel-add">添加</button>
+                </div>
+            </div>
+        </form>

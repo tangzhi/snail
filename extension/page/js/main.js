@@ -7,6 +7,7 @@ require.config({
         underscore: "../../lib/underscore-min",
         backbone: "../../lib/backbone-min",
         // APIe
+        localStorage: "../../lib/backbone.localStorage",
         //
         // Require.js plugins
         text: "require/text",
@@ -18,11 +19,13 @@ require.config({
 });
 
 require(["jquery", "foundation", 
-        "views/header", "router"], function ($, foundation, HeaderView, Router) {
+        "views/header", "router", "vm"], function ($, foundation, HeaderView, Router, Vm) {
 
     //render header
-    var header = new HeaderView();
-    header.render();
+    //var header = new HeaderView();
+    //header.render();
+    var view = Vm.create("header", HeaderView);
+    view.render();
 
     //创建路由
     Router.init();

@@ -1,7 +1,7 @@
 config = {
 
     "cancel": {
-        "target1": {urls:["*://220.167.100.204/*", "http://uedas.qidian.com/javascript/statlib.js", "*://*.game.qidian.com/*", "*://*.tbc37.net/*"]}   //filter
+        "target1": {urls:["*://220.167.100.204/*", "http://uedas.qidian.com/javascript/statlib.js", "*://*.game.qidian.com/*", "*://*.tbc37.net/*", "*://*.jntmedia.cn/*", "*://*.mediav.com/*", "*://*.allyes.com/*", "*://www.qidian.com/ploy/*"]}   //filter
         /*"target2": {urls:["*://220.167.100.204/*"], types:["..."]},   //filter
 
         "target3": {
@@ -54,7 +54,7 @@ config = {
                         localStorage[details.url+":"+"2"] = new Date().getTime();
 
                         callbackFn({
-                            authCredentials: {username: "ai\\tangzhi2222", password: "######a1"}
+                            authCredentials: {username: "ai\\tangzhi", password: "!!!!!!a1"}
                         });
 
                     }else{
