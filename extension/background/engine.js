@@ -56,11 +56,13 @@ var engine = function() {
 
         var rUrls = _(redirectCfg.records).chain().map(function(id){
                         var one = redirectCfg.jsonData(redirectCfg.localStorage().getItem(redirectCfg.name+"-"+id));
-                        return {src: new RegExp(one.old_url), desc: one.new_url};
+                        return {src: new RegExp(one.old_url), dest: one.new_url};
                     }, this).compact().value();
 
         if (rUrls.length>0) {
             cfg.onBeforeRequest.redirectUrl = {_snail_replace: {}};
+
+            console.log("rUrls:"+JSON.stringify(rUrls));
 
             cfg.onBeforeRequest.redirectUrl._snail_replace.replace = rUrls;
         }

@@ -6,7 +6,7 @@ var register = function(config) {
 
     snail.generateRules();
 
-    snail.parse(config);
+    //snail.parse(config);
 
     snail.on();
 

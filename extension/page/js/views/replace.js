@@ -31,7 +31,7 @@ define([
 
     });
 
-    var Tentacles = new TentacleList;
+    var Tentacles = new TentacleList();
 
     var TentacleView = Backbone.View.extend({
         
@@ -55,6 +55,7 @@ define([
 
         clear: function() {
             this.model.destroy();
+            chrome.extension.getBackgroundPage().reload();
             return false;
         },
 
@@ -71,7 +72,8 @@ define([
         template: _.template(ReplaceTemplate),
 
         events: {
-            "click a.replace-add"    :   "addTentacle"
+            //"click submit.replace-add"    :   "addTentacle"
+            "valid.fndtn.abide #replaceForm" : "addTentacle"
         },
 
         initialize: function() {
@@ -123,8 +125,7 @@ define([
 
             Tentacles.create({old_url: oldUrl, new_url: newUrl, desc: desc});
 
-            return false;
-
+            chrome.extension.getBackgroundPage().reload();
         }
 
     });

@@ -31,7 +31,7 @@ define([
 
     });
 
-    var Tentacles = new TentacleList;
+    var Tentacles = new TentacleList();
 
     var TentacleView = Backbone.View.extend({
         
@@ -74,7 +74,7 @@ define([
         template: _.template(CancelTemplate),
 
         events: {
-            "valid.fndtn.abide form" : "addTentacle"
+            "valid.fndtn.abide #cancelForm" : "addTentacle"
         },
 
         initialize: function() {
