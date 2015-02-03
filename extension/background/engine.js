@@ -205,7 +205,7 @@ var engine = function() {
             for(var target in targets) {
                 var cmd = targets[target];
                 
-                console.log("on:["+ev+"]-"+target);
+                console.log("on["+ev+"]-"+target+":"+JSON.stringify(cmd));
                 chrome.webRequest[ev].addListener(  cmd.handle, 
                                                     getOpt(cmd.filter, ev, OPTS_FILTER_IDENTIFIER),
                                                     getOpt(cmd.extraInfo, ev, OPTS_EXTRA_INFO_IDENTIFIER) );
@@ -228,11 +228,13 @@ var engine = function() {
             for(var target in targets) {
                 var cmd = targets[target];
                     
-                console.log("off:["+ev+"]-"+target);
+                console.log("off["+ev+"]-"+target+":"+JSON.stringify(cmd));
                 chrome.webRequest[ev].removeListener( cmd.handle );        
             }
         }
 
+        //remove old rules
+        gRules=null;
     };
 
     return {
