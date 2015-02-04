@@ -50,23 +50,18 @@ define([
         },
 
         render: function() {
-            console.log("render :"+ this.model.get("desc")+" - "+this.model.get("enable"));
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         },
 
         clear: function() {
             this.model.destroy();
-            //
             chrome.extension.getBackgroundPage().reload();
-
             return false;
         },
 
         changeEnabled: function() {
-            console.log("changeEnabled:"+(this.$("input:checkbox").is(':checked')));
             this.model.save({"enable": this.$("input:checkbox").is(':checked')});
-            //this.model.save();
             chrome.extension.getBackgroundPage().reload();
             return false;
         }

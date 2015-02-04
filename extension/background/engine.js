@@ -66,6 +66,10 @@ var engine = function() {
 
         var rUrls = _(redirectCfg.records)
                         .chain()
+                        .filter(function(id){
+                                return redirectCfg.jsonData(redirectCfg.localStorage()
+                                                    .getItem(redirectCfg.name+"-"+id)).enable === true;
+                            })
                         .map(function(id){
                                 var one = redirectCfg.jsonData(redirectCfg.localStorage().getItem(redirectCfg.name+"-"+id));
                                 return {src: new RegExp(one.old_url), dest: one.new_url};

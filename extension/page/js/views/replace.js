@@ -41,7 +41,7 @@ define([
 
         events: {
             "click a.remove"    :   "clear",
-            "click a.recommend" :   "recommend"
+            "click input:checkbox" :   "changeEnabled"
         },
 
         initialize: function() {
@@ -60,7 +60,10 @@ define([
             return false;
         },
 
-        recommend: function() {
+        changeEnabled: function() {
+            this.model.save({"enable": this.$("input:checkbox").is(':checked')});
+            //console.log("enable:"+this.$("input:checkbox").is(':checked'));
+            chrome.extension.getBackgroundPage().reload();
             return false;
         }
 
@@ -126,9 +129,9 @@ define([
             
             var one = Tentacles.findWhere({old_url: oldUrl});
             if (one) {
-                one.save({old_url: oldUrl, new_url: newUrl, desc: desc});
+                one.save({old_url: oldUrl, new_url: newUrl, desc: desc, enable: true});
             }else{
-                Tentacles.create({old_url: oldUrl, new_url: newUrl, desc: desc});
+                Tentacles.create({old_url: oldUrl, new_url: newUrl, desc: desc, enable: true});
             }
 
             chrome.extension.getBackgroundPage().reload();
