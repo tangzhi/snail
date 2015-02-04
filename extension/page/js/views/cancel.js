@@ -41,14 +41,16 @@ define([
 
         events: {
             "click a.remove"    :   "clear",
-            "click a.recommend" :   "recommend"
+            "click input:checkbox" :   "changeEnabled"
         },
 
         initialize: function() {
             this.listenTo(this.model, 'destroy', this.remove);
+            this.listenTo(this.model, 'change', this.render);
         },
 
         render: function() {
+            console.log("render :"+ this.model.get("desc")+" - "+this.model.get("enable"));
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         },
@@ -61,7 +63,11 @@ define([
             return false;
         },
 
-        recommend: function() {
+        changeEnabled: function() {
+            console.log("changeEnabled:"+(this.$("input:checkbox").is(':checked')));
+            this.model.save({"enable": this.$("input:checkbox").is(':checked')});
+            //this.model.save();
+            chrome.extension.getBackgroundPage().reload();
             return false;
         }
 
@@ -126,7 +132,12 @@ define([
             }
             url = scheme+url;
 
-            Tentacles.create({url: url, desc: desc});
+            var one = Tentacles.findWhere({url:url});
+            if (one) {
+                one.save({url: url, desc: desc, enable: true});
+            }else{
+                Tentacles.create({url: url, desc: desc, enable: true});
+            }
 
             chrome.extension.getBackgroundPage().reload();
         }

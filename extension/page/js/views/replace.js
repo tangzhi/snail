@@ -46,6 +46,7 @@ define([
 
         initialize: function() {
             this.listenTo(this.model, 'destroy', this.remove);
+            this.listenTo(this.model, 'change', this.render);
         },
 
         render: function() {
@@ -122,8 +123,13 @@ define([
             if (oldUrl ==="" || newUrl === "" || desc === "") {
                 return;
             }
-
-            Tentacles.create({old_url: oldUrl, new_url: newUrl, desc: desc});
+            
+            var one = Tentacles.findWhere({old_url: oldUrl});
+            if (one) {
+                one.save({old_url: oldUrl, new_url: newUrl, desc: desc});
+            }else{
+                Tentacles.create({old_url: oldUrl, new_url: newUrl, desc: desc});
+            }
 
             chrome.extension.getBackgroundPage().reload();
         }

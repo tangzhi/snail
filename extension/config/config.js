@@ -5,7 +5,7 @@ config = {
         /*"target2": {urls:["*://220.167.100.204/*"], types:["..."]},   //filter
 
         "target3": {
-            "filter": {urls:["<all_urls>"]}; // (optional)
+            "filter": {urls:["<all_urls>"]}, // (optional)
             "expr": function(details) {
                 //...
                 return {cancel: true};

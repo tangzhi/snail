@@ -44,20 +44,34 @@ var engine = function() {
         
         var cancelCfg = new Store("snail-cancel");
 
-        var cancelUrls = _(cancelCfg.records).chain().map(function(id){
-                        return cancelCfg.jsonData(cancelCfg.localStorage().getItem(cancelCfg.name+"-"+id)).url;
-                    }, this).compact().value();
+        var cancelUrls = _(cancelCfg.records)
+                            .chain()
+                            .filter(function(id){
+                                    return cancelCfg.jsonData(cancelCfg.localStorage()
+                                                        .getItem(cancelCfg.name+"-"+id)).enable === true;
+                                })
+                            .map(function(id){
+                                    return cancelCfg.jsonData(cancelCfg.localStorage()
+                                                        .getItem(cancelCfg.name+"-"+id)).url;
+                                }, this)
+                            .compact()
+                            .value();
 
         if (cancelUrls.length>0) {
             cfg.onBeforeRequest.cancel = {_snail_cancel: {urls: cancelUrls}};
         }
 
+        //////////////
         var redirectCfg = new Store("snail-replace");
 
-        var rUrls = _(redirectCfg.records).chain().map(function(id){
-                        var one = redirectCfg.jsonData(redirectCfg.localStorage().getItem(redirectCfg.name+"-"+id));
-                        return {src: new RegExp(one.old_url), dest: one.new_url};
-                    }, this).compact().value();
+        var rUrls = _(redirectCfg.records)
+                        .chain()
+                        .map(function(id){
+                                var one = redirectCfg.jsonData(redirectCfg.localStorage().getItem(redirectCfg.name+"-"+id));
+                                return {src: new RegExp(one.old_url), dest: one.new_url};
+                            }, this)
+                        .compact()
+                        .value();
 
         if (rUrls.length>0) {
             cfg.onBeforeRequest.redirectUrl = {_snail_replace: {}};
@@ -67,11 +81,31 @@ var engine = function() {
             cfg.onBeforeRequest.redirectUrl._snail_replace.replace = rUrls;
         }
 
+        //////////////
+        //TODO:
+        /*
+        var someCfg = new Store("snail-cfg");
+        _(redirectCfg.records).chain().each(function(id){
+            var one = redirectCfg.jsonData(redirectCfg.localStorage().getItem(redirectCfg.name+"-"+id));
+            //console.log("one:"+JSON
+        }, this);
+        */
+
+
+        //////////////
         console.log("generateRules:"+JSON.stringify(cfg));
 
         convertRules(cfg);
 
     };
+
+    //TODO: RegExp/Date/Function stringify
+    //save cfg to localStorage
+    var recordCfg = function(config, desc, order) {
+        var some = new Store("snail-cfg");
+        order = order || (some.records.length + 1);
+        some.create({order:order, desc:desc, cfg:JSON.stringify(config)});
+    }
 
     //convert config to options
     var parse = function(config) {
