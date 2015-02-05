@@ -19,11 +19,12 @@ var DEFAULT_EXTRA_INFO_OPTS = {};
 (function(){
     "use strict";
 
-    //onAuthRequired need ???asyncBlocking???
-    _.each(["onBeforeRequest", "onBeforeSendHeaders", "onHeadersReceived", "onAuthRequired"], function(ev) {
+    _.each(["onBeforeRequest", "onBeforeSendHeaders", "onHeadersReceived"], function(ev) {
         DEFAULT_EXTRA_INFO_OPTS[ev] = ["blocking"];
     });
     
+    DEFAULT_EXTRA_INFO_OPTS["onAuthRequired"] = ["asyncBlocking"];
+
     DEFAULT_EXTRA_INFO_OPTS.onBeforeSendHeaders.push("requestHeaders");
     DEFAULT_EXTRA_INFO_OPTS.onHeadersReceived.push("responseHeaders");
 

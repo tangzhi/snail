@@ -32,7 +32,6 @@ config = {
         //...
     } ,
 
-    */
     "onAuthRequired": {
         "home.asiainfo": {
             "login": {
@@ -64,6 +63,58 @@ config = {
 
             }
         }
+    },
+    */
+
+    //查询结果，新页面打开
+    "onBeforeRequest": {
+        "google.query" : {
+            "newwindow": {
+                "filter": {urls:["*://www.google.com/*","*://www.google.com.hk/*", "*://g.cncoder.cn/*", "*://g.ttlsa.com/*"]
+                            , types:["main_frame", "xmlhttprequest"]},
+                "handle": function(details) {
+                    //
+                    if (-1 == details.url.indexOf("newwindow=1") && 
+                            (   details.url.indexOf("#q=")>0 
+                             || details.url.indexOf("?q=")>0
+                             || details.url.indexOf("\&q=")>0 )) {
+                        return {redirectUrl: details.url+"&newwindow=1"};
+                    }
+                }
+            }
+        }
+    },
+
+    //查询结果直达最终结果页，不经过google跳转
+    "onCompleted": {
+        "google.query" : {
+            "directResult" : {
+                "filter": {urls:["*://www.google.com/*","*://www.google.com.hk/*", "*://g.cncoder.cn/*", "*://g.ttlsa.com/*"]},
+                "handle": function(details) {
+                    var change = function() {
+                        var arr = window.document.getElementsByTagName("a");
+                        for(var el,i=0,j=arr.length; i<j; i++) {
+                            el = arr[i];
+                            if (el.hasAttribute("href") && el.hasAttribute("onmousedown") 
+                                    && el.getAttribute("onmousedown") != "return true") {
+                                el.setAttribute("onmousedown", "return true");
+                                clone = document.importNode(el, true);//remove original onmousedown event
+                                var p = el.parentNode; 
+                                p.removeChild(el);
+                                p.appendChild(clone);
+                            }
+                        }
+                    }
+
+                    if (details.type == "main_frame" || 
+                            details.type == "sub_frame" ||
+                            details.type == "xmlhttprequest") {
+                                    chrome.tabs.executeScript(details.tabId, {code: "("+change.toString() + ")()"});
+                    }
+                }
+
+            }
+        } 
     }
 };
 
