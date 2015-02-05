@@ -166,12 +166,12 @@ var engine = function() {
             return function(details) {
                 var newUrl = details.url;
                 for(var i = 0, j = redirects.length; i<j; ++i) {
-                    console.log("replace rule.  src:"+redirects[i].src + ", dest:"+redirects[i].dest);
+                    //console.log("replace rule.  src:"+redirects[i].src + ", dest:"+redirects[i].dest);
                     newUrl = newUrl.replace(redirects[i].src,redirects[i].dest); 
                 }
                 if (newUrl !== details.url) {
-                    console.log("old_url:"+details.url);
-                    console.log("new_url:"+newUrl);
+                    //console.log("old_url:"+details.url);
+                    //console.log("new_url:"+newUrl);
                     return {redirectUrl: newUrl};
                 }
             };

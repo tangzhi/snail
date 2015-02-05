@@ -1,17 +1,17 @@
 config = {
 
+    /*
     "cancel": {
         "target1": {urls:["*://220.167.100.204/*", "http://uedas.qidian.com/javascript/statlib.js", "*://*.game.qidian.com/*", "*://*.tbc37.net/*", "*://*.jntmedia.cn/*", "*://*.mediav.com/*", "*://*.allyes.com/*", "*://www.qidian.com/ploy/*"]}   //filter
-        /*"target2": {urls:["*://220.167.100.204/*"], types:["..."]},   //filter
+        //"target2": {urls:["*://220.167.100.204/*"], types:["..."]},   //filter
 
-        "target3": {
-            "filter": {urls:["<all_urls>"]}, // (optional)
-            "expr": function(details) {
+        //"target3": {
+        //    "filter": {urls:["<all_urls>"]}, // (optional)
+        //    "expr": function(details) {
                 //...
-                return {cancel: true};
-            }
-        }
-        */
+        //        return {cancel: true};
+        //    }
+        //}
         //...
     },
     
@@ -26,17 +26,17 @@ config = {
         "target2": {
             "filter": {urls:["*://ajax.googleapis.com/*", "*://www.google.com/*", "*://www.google.com.hk/*"]}, // (optional)
             "replace": [
-                    //{src: /www.google.[^\/]*/, dest: "wen.lu"},
                     {src: /ajax.googleapis.com/, dest: "cdnjs.cloudflare.com", SCP: true}
             ]
         }
         //...
     } ,
 
+    */
     "onAuthRequired": {
         "home.asiainfo": {
             "login": {
-                "filter": {urls:["*://*.asiainfo.com/*", "*://*.asiainfo.com/*"]},
+                "filter": {urls:["*://*.asiainfo.com/*"]},
                 "extraInfo": ["asyncBlocking"],
                 "handle": function(details, callbackFn) {
                     console.log("auth:"+details.url);
@@ -60,20 +60,11 @@ config = {
                     }else{
                         callbackFn({});
                     }
-                    
-                    /*
-
-                    callbackFn({
-                        authCredentials: {username: "ai\tangzhi", password: "######a1"}
-                    });
-                    */
                 }
 
             }
         }
     }
-    
-
 };
 
 
