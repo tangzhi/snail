@@ -23,7 +23,7 @@ var DEFAULT_EXTRA_INFO_OPTS = {};
         DEFAULT_EXTRA_INFO_OPTS[ev] = ["blocking"];
     });
     
-    DEFAULT_EXTRA_INFO_OPTS["onAuthRequired"] = ["asyncBlocking"];
+    DEFAULT_EXTRA_INFO_OPTS.onAuthRequired = ["asyncBlocking"];
 
     DEFAULT_EXTRA_INFO_OPTS.onBeforeSendHeaders.push("requestHeaders");
     DEFAULT_EXTRA_INFO_OPTS.onHeadersReceived.push("responseHeaders");
@@ -110,7 +110,7 @@ var engine = function() {
         var some = new Store("snail-cfg");
         order = order || (some.records.length + 1);
         some.create({order:order, desc:desc, cfg:JSON.stringify(config)});
-    }
+    };
 
     //convert config to options
     var parse = function(config) {

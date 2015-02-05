@@ -7,8 +7,8 @@
         "tabs", "webRequest", "webRequestBlocking", "<all_urls>"
     ],
     "icons": {
-        "16": "snail.png"
-        "48": "snail.png"
+        "16": "snail.png",
+        "48": "snail.png",
         "128": "snail.png"
     },
     "browser_action": {
